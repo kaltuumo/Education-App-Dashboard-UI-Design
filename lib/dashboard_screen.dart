@@ -1,3 +1,5 @@
+import 'package:education_app_dashboard_ui_design/conatiner_card.dart';
+import 'package:education_app_dashboard_ui_design/gridView.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -38,119 +40,15 @@ class DashboardScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 15, left: 15, right: 15),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2.8,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 19, 175, 123),
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(70),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 20, left: 0, right: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                          children: [
-                            Icon(Icons.menu, color: Colors.white),
-                            Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                image: DecorationImage(
-                                  image: AssetImage("images/wom.jpeg"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        "Mss Kl",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      Text(
-                        "Last Update: 23 Feb 2025",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                      const SizedBox(height: 20),
-
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: "Search By Name",
-                          prefixIcon: Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            // Optional: Add a border
-                            borderRadius: BorderRadius.circular(
-                              10,
-                            ), // Rounded corners
-                            borderSide:
-                                BorderSide.none, // Removes default border
-                          ),
-                          filled: true, // Enables background color
-                          fillColor: Colors.white, // White background
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            Stack(children: [ConatinerCard()]),
             Padding(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height / 2.7,
               ),
-              child: GridView.builder(
-                itemCount: catesName.length,
-                shrinkWrap: true,
-
-                physics: NeverScrollableScrollPhysics(),
-
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: cateColors[index],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(cateIcons[index], color: Colors.white),
-                      ),
-                      Text(
-                        catesName[index],
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  );
-                },
+              child: Gridview(
+                catesName: catesName,
+                cateColors: cateColors,
+                cateIcons: cateIcons,
               ),
             ),
           ],
